@@ -1,0 +1,151 @@
+@font-face {
+    font-family: GothicRegular;
+    src: url('Fonts/Special_Gothic/SpecialGothic-Regular.ttf');
+}
+
+@font-face {
+    font-family: GothicCondensed;
+    src: url('Fonts/Special_Gothic_Condensed_One/SpecialGothicCondensedOne-Regular.ttf');
+}
+
+:root {
+    font-family: GothicRegular;
+    margin: 0px;
+    --light: rgb(232, 232, 237);
+    --dark: rgb(30, 39, 59);
+    --dark-medium: rgb(53, 53, 93);
+    --medium: rgb(100, 100, 126);
+    --medium-light: rgb(179, 179, 197);
+    --background: rgb(215, 216, 219);
+    --accent: rgb(206, 182, 75);
+    --accent-2: rgb(129, 69, 34);
+}
+
+body {
+    height: 0px;
+    background: var(--background);
+    color: var(--dark)
+}
+
+h1, h2, h3, h4, a {
+    font-family: GothicCondensed;
+    color: var(--dark);
+}
+
+h1 {
+    font-size: 36px;
+    color: var(--light);
+}
+
+select, button, input {
+    font-family: GothicRegular;
+    background-color: var(--light);
+    width: auto;
+    height: 24px;
+    border-radius: 3px;
+    border-style: none;
+}
+
+
+#banner {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 4px;
+    z-index: 2;
+    border-bottom: ridge 4px var(--accent);
+}
+
+#film-stripe {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.parallelogram {
+    width: 50px;
+	height: 50px;
+	transform: skew(-20deg);
+    animation: move 5 linear 0 1 reverse fill-mode;
+}
+
+.black {
+    background-color: rgb(0,0,0,0);
+}
+
+.white {
+    background-color: var(--light);
+}
+
+#search-div {
+    position: fixed;
+    top: 98px;
+    left: 0px;
+    right: 0px;
+    text-align: right;
+    padding: 4px;
+    background-color: var(--medium-light);
+    gap: 10%;
+    z-index: -2;
+}
+
+#button-div {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+}
+
+.material-symbols-outlined {
+    color: var(--light);
+    padding: 18px;
+    cursor: pointer;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  font-size: 36px;
+}
+
+a > .material-symbols-outlined {
+    color: var(--dark);
+    font-size: 24px;
+    padding: 0px 10px 0px 0px;
+}
+
+a > .link{
+    position: absolute;
+}
+
+a > span {
+    margin: 4px;
+}
+
+a:hover {
+    color: var(--dark-medium);
+}
+#drawer {
+    position: fixed;
+    width: 150px;
+    height: auto;
+    top: -54px;
+    left: 20px;
+    background-color: var(--accent);
+    transition: top 0.3s ease;
+    z-index: -1;
+}
+
+#drawer[data-open=true]{
+    top: 98px;
+}
+
+#button-div {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
