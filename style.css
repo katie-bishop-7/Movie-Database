@@ -12,11 +12,11 @@
     font-family: GothicRegular;
     margin: 0px;
     --light: rgb(232, 232, 237);
-    --dark: rgb(30, 39, 59);
-    --dark-medium: rgb(53, 53, 93);
-    --medium: rgb(100, 100, 126);
-    --medium-light: rgb(179, 179, 197);
-    --background: rgb(215, 216, 219);
+    --dark: rgb(56, 56, 56);
+    --dark-medium: rgb(61, 61, 75);
+    --medium: rgb(105, 105, 121);
+    --medium-light: rgb(196, 191, 182);
+    --background: rgb(216, 216, 216);
     --accent: rgb(206, 182, 75);
     --accent-2: rgb(129, 69, 34);
 }
@@ -27,14 +27,38 @@ body {
     color: var(--dark)
 }
 
-h1, h2, h3, h4, a {
+#page {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 36px;
+    padding: 16px;
+    height: auto;
+    background-color: var(--light);
+    z-index: -3;
+    padding-left: 36px;
+}
+
+.dark-theme {
+    color: var(--light);
+}
+
+.light-theme {
+    color: var(--dark)
+}
+
+h1, h2, h3, h4, :placeholder-shown{
     font-family: GothicCondensed;
-    color: var(--dark);
+    
+}
+a {
+    font-family: GothicCondensed;
+    color: var(--dark)
 }
 
 h1 {
     font-size: 36px;
-    color: var(--light);
 }
 
 select, button, input {
@@ -71,7 +95,16 @@ select, button, input {
     width: 50px;
 	height: 50px;
 	transform: skew(-20deg);
-    animation: move 5 linear 0 1 reverse fill-mode;
+    /* animation: move-right infinite 3s linear; */
+}
+
+@keyframes move-right {
+    0% {
+        translate: 0px;
+    }
+    100% {
+        translate: 60px;
+    }
 }
 
 .black {
@@ -98,6 +131,7 @@ select, button, input {
     display: flex;
     flex-direction: row;
     gap: 10%;
+    color: var(--dark);
 }
 
 .material-symbols-outlined {
@@ -137,7 +171,7 @@ a:hover {
     left: 20px;
     background-color: var(--accent);
     transition: top 0.3s ease;
-    z-index: -1;
+    z-index: 1;
 }
 
 #drawer[data-open=true]{
@@ -148,4 +182,68 @@ a:hover {
     display: flex;
     flex-direction: column;
     padding: 12px;
+}
+
+/* Card formatting */
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: auto;
+    margin-right: 36px;
+    height: auto;
+    font-family: GothicCondensed;
+}
+
+.info-card {
+    text-align: center;
+    width: auto;
+    height: 90%;
+}
+
+.info-card:hover{
+    transform: scale(1.1);
+    transition: transform .08s ease-in;
+}
+
+.info-card > img {
+    
+    width: 170px;
+    height: auto;
+    border-radius: 6px;
+}
+
+.info-card > div {
+    padding: 8px 0px;
+}
+
+.info-card > h3 {
+    max-width: 170px;
+    word-wrap: break-word;
+}
+
+#movie-info-container {
+    display: flex;
+    flex-direction: row;
+}
+#movie-info-container > img {
+    width: 300px;
+    height: auto;
+    border-radius: 6px;
+}
+
+#movie-info {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+.container {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
 }

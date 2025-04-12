@@ -21,9 +21,12 @@ const options = {
 // The query needs to be a string that includes '&' to separate parameters
 async function makeAPICall(urlExtension, query) {
     const newURL = `${api}${urlExtension}?api_key=${apiKey}&${query}`;
+
     const result = await fetch(newURL, options);
     return result.json();
 }
+
+
 
 // Function to get popular movies
 async function moviePopular(page) {
@@ -128,6 +131,13 @@ async function tvImages(seriesId) {
 
     const res1 = await makeAPICall(urlExtension, "");
     return res1;
+}
+
+// Function for movie credits
+async function movieCredits(movieId) {
+    const urlExtension = `movie/${movieId}/credits`;
+
+    return await makeAPICall(urlExtension,"");
 }
 
 // Utility function to process a query string into a JSON object
