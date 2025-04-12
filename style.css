@@ -61,13 +61,18 @@ h1 {
     font-size: 36px;
 }
 
+h4 {
+    margin: 0px;
+}
+
 select, button, input {
-    font-family: GothicRegular;
+    font-family: GothicCondensed;
     background-color: var(--light);
     width: auto;
     height: 24px;
     border-radius: 3px;
     border-style: none;
+    margin: 0px 8px 0px 8px;
 }
 
 input {
@@ -149,6 +154,17 @@ input {
   font-size: 36px;
 }
 
+#search-icon {
+    color: var(--dark);
+    padding: 10px;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  font-size: 24px;
+}
+
 a > .material-symbols-outlined {
     color: var(--dark);
     font-size: 24px;
@@ -184,7 +200,6 @@ a:hover {
 #button-div {
     display: flex;
     flex-direction: column;
-    padding: 12px;
 }
 
 /* Card formatting */
@@ -208,9 +223,14 @@ a:hover {
     background-color: var(--light);
 }
 
-.info-card:hover{
+.clickable:hover{
     transform: scale(1.1);
     transition: transform .08s ease-in;
+}
+
+.clickable:active{
+    transform: scale(1.2);
+    transition: transform .04s ease-in;
 }
 
 .info-card > img {

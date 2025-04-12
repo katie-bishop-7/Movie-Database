@@ -36,11 +36,25 @@
 
         </div>
     </div>
-    <div id="search-div">
-        <div>
-            Search Term: <input id="search-text" type="text" placeholder="Search for movie"/>
+    <div id="search-div" class="row container right">
+        <div id="button-div">
+            <a class="find-button" id="find-button"  href="movie.html">
+                <span class="material-symbols-outlined clickable" id="search-icon">
+                    search
+                </span>
+            </a>
         </div>
-
+        <div>
+            <input id="id-text" type="text" placeholder="Search for movies, TV, or people" />
+        </div>
+        <h4>Sort by: </h4>
+        <select>
+            <option value="1" selected>All</option>
+            <option value="2">Movies</option>
+            <option value="3">TV</option>
+            <option value="4">People</option>
+        </select>
+           
     </div>
     <div id="drawer" class="light-theme">
         <div id="button-div">

@@ -38,7 +38,7 @@ peoplePopular()
 
             card.appendChild(img);
             card.appendChild(name);
-            card.className = "info-card"
+            card.className = "info-card clickable"
             card.id = `person-card-${i}`
 
             card.addEventListener("click", (e) => {

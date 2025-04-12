@@ -77,7 +77,7 @@ tvDetails(seriesId)
                         .then(res => {
                             img.src = `${imgUrl}w500${res.profile_path}`;
                             nameDiv.innerText = res.name;
-                            card.className = "info-card movie-cast-card"
+                            card.className = "info-card movie-cast-card clickable"
 
 
                             card.addEventListener("click", () => {

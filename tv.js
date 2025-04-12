@@ -27,7 +27,6 @@ const number_of_cards = 50;
 
 tvPopular()
     .then(results => {
-        console.log(results, "results")
         for (let i = 0; i < number_of_cards; i++) { // iterate over number of cards
             // create card with info
             let img = document.createElement('img')
@@ -43,7 +42,7 @@ tvPopular()
             card.appendChild(img);
             card.appendChild(title);
             card.appendChild(voteAverage);
-            card.className = "info-card"
+            card.className = "info-card clickable"
             card.id = `tv-card-${i}`
 
             card.addEventListener("click", (e) => {

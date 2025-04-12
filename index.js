@@ -47,7 +47,7 @@ moviePopular()
             card.appendChild(img);
             card.appendChild(title);
             card.appendChild(voteAverage);
-            card.className = "info-card"
+            card.className = "info-card clickable"
             card.id = `movie-card-${i}`
 
             card.addEventListener("click", (e) => {
@@ -78,7 +78,7 @@ tvPopular()
             card.appendChild(img);
             card.appendChild(title);
             card.appendChild(voteAverage);
-            card.className = "info-card"
+            card.className = "info-card clickable"
             card.id = `tv-card-${i}`
 
             document.getElementById("tv-card-container").appendChild(card)
@@ -100,7 +100,7 @@ peoplePopular()
 
             card.appendChild(img);
             card.appendChild(title);
-            card.className = "info-card"
+            card.className = "info-card clickable"
             card.id = `people-card-${i}`
 
             card.addEventListener("click", () => {

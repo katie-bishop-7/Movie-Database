@@ -74,7 +74,7 @@ personDetails(personId)
 
                             img.src = imgURL;
                             titleDiv.innerText = title;
-                            card.className = "info-card movie-cast-card"
+                            card.className = "info-card movie-cast-card clickable"
 
                             card.appendChild(img)
                             card.appendChild(titleDiv)
@@ -107,7 +107,7 @@ personDetails(personId)
 
                             img.src = imgURL;
                             titleDiv.innerText = title;
-                            card.className = "info-card movie-cast-card"
+                            card.className = "info-card movie-cast-card clickable"
 
                             card.appendChild(img)
                             card.appendChild(titleDiv)

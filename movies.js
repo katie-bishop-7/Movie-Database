@@ -43,7 +43,7 @@ moviePopular()
             card.appendChild(img);
             card.appendChild(title);
             card.appendChild(voteAverage);
-            card.className = "info-card"
+            card.className = "info-card clickable"
             card.id = `movie-card-${i}`
 
             card.addEventListener("click", (e) => {
