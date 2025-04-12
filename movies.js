@@ -5,12 +5,58 @@ const movieName = queryObj.query;
 const idInput = document.getElementById("id-text");
 const findButton = document.getElementById("find-button");
 
+const navButton = document.getElementById("nav-button");
+const drawer = document.getElementById("drawer")
+let drawerIsOpen = false;
+
+
+// Nav drawer open and close
+navButton.addEventListener("click", e => {
+    drawerIsOpen = !drawerIsOpen;
+    drawer.dataset.open = `${drawerIsOpen}`
+});
+
 // Navigate with a query String
 findButton.addEventListener("click", e => {
     e.preventDefault();
     console.log(`${e.target.href}?id=${idInput.value}`);
     window.location.href = `${e.target.href}?id=${idInput.value}`;
 });
+
+const number_of_cards = 50;
+
+moviePopular()
+    .then(results => {
+        for (let i = 0; i < number_of_cards; i++) { // iterate over number of cards
+            // create card with info
+            console.log(results.results[i])
+            let img = document.createElement('img')
+            let card = document.createElement('div')
+            let title = document.createElement('h3')
+            let voteAverage = document.createElement('div')
+
+            img.src = `${imgUrl}w500${results.results[i].poster_path}`
+            img.alt = `${results.results[i].title} poster`
+            title.innerText = `${results.results[i].title} (${results.results[i].release_date.slice(0, 4)})`
+            voteAverage.innerText = `Vote Average: ${results.results[i].vote_average}`
+
+            card.appendChild(img);
+            card.appendChild(title);
+            card.appendChild(voteAverage);
+            card.className = "info-card"
+            card.id = `movie-card-${i}`
+
+            card.addEventListener("click", (e) => {
+                e.preventDefault()
+                window.location.href = `movie.html?id=${results.results[i].id}`;
+
+            })
+
+            document.getElementById("movie-card-container").appendChild(card)
+        }
+    })
+    .catch(error => console.log(error));
+
 
 // Make the call to get results from the search
 movieSearch(movieName)

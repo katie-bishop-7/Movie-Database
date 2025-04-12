@@ -4,6 +4,16 @@ const peopleName = queryObj.query;
 
 const idInput = document.getElementById("id-text");
 const findButton = document.getElementById("find-button");
+const navButton = document.getElementById("nav-button");
+const drawer = document.getElementById("drawer")
+let drawerIsOpen = false;
+
+
+// Nav drawer open and close
+navButton.addEventListener("click", e => {
+    drawerIsOpen = !drawerIsOpen;
+    drawer.dataset.open = `${drawerIsOpen}`
+});
 
 // Navigate with a query String
 findButton.addEventListener("click", e => {

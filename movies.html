@@ -32,16 +32,17 @@
             <div class="parallelogram white"></div>
             <div class="parallelogram black"></div>
             <div class="parallelogram white"></div>
-            <div class="parallelogram black"></div>
-            <div class="parallelogram white"></div>
+
 
         </div>
     </div>
-    <div id="search-div">
+    <div id="search-div" class="row container right">
         <div>
-            Search Term: <input id="search-text" type="text" />
+            <input id="id-text" type="text" placeholder="Find Movie by ID"/>
         </div>
-
+        <div id="button-div">
+            <a class="find-button" id="find-button" href="movie.html">Find</a>
+        </div>
     </div>
     <div id="drawer">
         <div id="button-div">
@@ -67,16 +68,15 @@
                 <span class="link">People</span></a>
         </div>
     </div>
-    <h1>Movies</h1>
-    <div id="find-div">
-        <div>
-            Find Movie by ID: <input id="id-text" type="text" />
-        </div>
-        <div id="button-div">
-            <a class="find-button" id="find-button" href="movie.html">Find</a>
+    <div id="page">
+        <h1>Movies</h1>
+        <div id="movie-card-container" class="card-container">
+
         </div>
     </div>
     
+
+
 </body>
 
 </html>

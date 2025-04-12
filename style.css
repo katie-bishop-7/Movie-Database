@@ -33,7 +33,7 @@ body {
     margin-left: 100px;
     margin-right: 100px;
     margin-bottom: 36px;
-    padding: 16px;
+    padding: 32px 16px;
     height: auto;
     background-color: var(--light);
     z-index: -3;
@@ -68,6 +68,10 @@ select, button, input {
     height: 24px;
     border-radius: 3px;
     border-style: none;
+}
+
+input {
+    width: 170px;
 }
 
 
@@ -123,7 +127,6 @@ select, button, input {
     text-align: right;
     padding: 4px;
     background-color: var(--medium-light);
-    gap: 10%;
     z-index: -2;
 }
 
@@ -195,12 +198,14 @@ a:hover {
     margin-right: 36px;
     height: auto;
     font-family: GothicCondensed;
+    flex-wrap: wrap;
 }
 
 .info-card {
     text-align: center;
     width: auto;
     height: 90%;
+    background-color: var(--light);
 }
 
 .info-card:hover{
@@ -230,7 +235,7 @@ a:hover {
 }
 #movie-info-container > img {
     width: 300px;
-    height: auto;
+    height: 100%;
     border-radius: 6px;
 }
 
@@ -240,10 +245,44 @@ a:hover {
     margin: 40px;
 }
 
+#movie-credits {
+    align-items: flex-start;
+    overflow: scroll;
+}
+
+#tv-credits{
+    align-items: flex-start;
+    overflow: scroll;
+}
+
+.movie-cast-card {
+    width: 150px;
+    height: 100%;
+    word-wrap: break-word;
+    margin: 10px;
+}
+.movie-cast-card > img {
+    width: 100px;
+    min-height: auto;
+}
+
+.character {
+    font-style: italic;
+}
+
 .container {
     display: flex;
+    align-items: center;
 }
 
 .row {
     flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.right {
+    justify-content: flex-end;
 }

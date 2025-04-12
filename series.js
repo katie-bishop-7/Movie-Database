@@ -4,12 +4,93 @@ const seriesId = queryObj.id;
 
 const idInput = document.getElementById("url-text");
 const findButton = document.getElementById("image-button");
+const navButton = document.getElementById("nav-button");
+const drawer = document.getElementById("drawer")
+let drawerIsOpen = false;
+
+
+// Nav drawer open and close
+navButton.addEventListener("click", e => {
+    drawerIsOpen = !drawerIsOpen;
+    drawer.dataset.open = `${drawerIsOpen}`
+});
 
 // Show the images based on the id
-findButton.addEventListener("click", e => {
-    document.getElementById("image-div").innerHTML =
-        `<img src=${imgUrl}w780/${idInput.value}></img>`
-});
+// findButton.addEventListener("click", e => {
+//     document.getElementById("image-div").innerHTML =
+//         `<img src=${imgUrl}w780/${idInput.value}></img>`
+// });
+
+tvDetails(seriesId)
+    .then(results => {
+        // Insert image
+        console.log(results)
+        const poster = document.getElementById("movie-poster")
+        poster.src = `${imgUrl}w500${results.poster_path}`
+        poster.alt = `${results.title} poster`
+
+        // Insert title, release date, rating, overview, runtime, vote average
+        let title = document.createElement('h1')
+        let voteAverage = document.createElement('div')
+        let released = document.createElement('div')
+        let seasons = document.createElement('div')
+        let episodes = document.createElement('div')
+        let overviewHeader = document.createElement('h2')
+        let overview = document.createElement('div')
+        let creditsHeader = document.createElement('h2')
+
+        title.innerText = `${results.name}`
+        voteAverage.innerText = `Vote Average: ${results.vote_average}`
+        released.innerText = `Years running: ${results.first_air_date.slice(0, 4)}-${results.last_air_date.slice(0, 4)}`
+        seasons.innerText = `Number of seasons: ${results.number_of_seasons}`
+        episodes.innerText = `Total number of Episodes: ${results.number_of_episodes}`
+        overviewHeader.innerText = "Overview"
+        overview.innerText = results.overview
+        creditsHeader.innerText = "Cast"
+
+        const tvInfo = document.getElementById("movie-info");
+        tvInfo.appendChild(title)
+        tvInfo.appendChild(voteAverage)
+        tvInfo.appendChild(released)
+        tvInfo.appendChild(seasons)
+        tvInfo.appendChild(episodes)
+        tvInfo.appendChild(overviewHeader)
+        tvInfo.appendChild(overview)
+
+        // get credits
+
+        tvCredits(seriesId)
+            .then(result => {
+                for (castObj of result.cast) {
+                    const card = document.createElement('div')
+                    const img = document.createElement('img')
+                    const nameDiv = document.createElement('div')
+                    const characterDiv = document.createElement('div')
+                    characterDiv.innerText = castObj.character
+                    characterDiv.className = "character"
+
+                    card.appendChild(img)
+                    card.appendChild(nameDiv)
+                    card.appendChild(characterDiv)
+
+                    personDetails(castObj.id)
+                        .then(res => {
+                            img.src = `${imgUrl}w500${res.profile_path}`;
+                            nameDiv.innerText = res.name;
+                            card.className = "info-card movie-cast-card"
+
+
+                            card.addEventListener("click", () => {
+                                window.location.href = `person.html?id=${res.id}`
+                            })
+
+                            document.getElementById("movie-credits").appendChild(card)
+                        })
+                }
+            })
+    })
+    .catch(error => console.log(error));
+
 
 // Make the call to get the info based on the id
 tvDetails(seriesId)

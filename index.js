@@ -29,10 +29,6 @@ searchEventListeners(personButton);
 
 const number_of_cards = 5;
 
-function createCards(number_of_cards, results) {
-
-}
-
 moviePopular()
     .then(results => {
         for (let i = 0; i < number_of_cards; i++) { // iterate over number of cards
@@ -106,6 +102,10 @@ peoplePopular()
             card.appendChild(title);
             card.className = "info-card"
             card.id = `people-card-${i}`
+
+            card.addEventListener("click", () => {
+                window.location.href = `person.html?id=${results.results[i].id}`
+            })
 
             document.getElementById("people-card-container").appendChild(card)
         }

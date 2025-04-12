@@ -34,37 +34,59 @@ movieDetails(movieId)
         let title = document.createElement('h1')
         let voteAverage = document.createElement('div')
         let released = document.createElement('div')
+        let runtime = document.createElement('div')
         let overviewHeader = document.createElement('h2')
         let overview = document.createElement('div')
         let creditsHeader = document.createElement('h2')
-        let credits = document.createElement('div')
 
         title.innerText = `${results.title}`
         voteAverage.innerText = `Vote Average: ${results.vote_average}`
         released.innerText = `Released: ${results.release_date}`
+        runtime.innerText = `Runtime: ${results.runtime} minutes`
         overviewHeader.innerText = "Overview"
         overview.innerText = results.overview
         creditsHeader.innerText = "Cast"
 
-        // get credits
-        movieCredits(movieId)
-        .then(result => {
-            console.log(result)
-            let creditStr = ""
-            for (castObj of result.cast) {
-                creditStr += `${castObj.name}, `;
-            }
-            credits.innerText = creditStr
-        })
-
-        let movieInfo = document.getElementById("movie-info");
+        const movieInfo = document.getElementById("movie-info");
         movieInfo.appendChild(title)
         movieInfo.appendChild(voteAverage)
         movieInfo.appendChild(released)
+        movieInfo.appendChild(runtime)
         movieInfo.appendChild(overviewHeader)
         movieInfo.appendChild(overview)
-        movieInfo.appendChild(creditsHeader)
-        movieInfo.appendChild(credits)
+
+        // get credits
+        
+        movieCredits(movieId)
+        .then(result => {
+            for (castObj of result.cast) {
+                const card = document.createElement('div')
+                const img = document.createElement('img')
+                const nameDiv = document.createElement('div')
+                const characterDiv = document.createElement('div')
+                characterDiv.innerText = castObj.character
+                characterDiv.className = "character"
+
+                card.appendChild(img)
+                card.appendChild(nameDiv)
+                card.appendChild(characterDiv) 
+
+                personDetails(castObj.id)
+                .then(res => {
+                    img.src = `${imgUrl}w500${res.profile_path}`;
+                    nameDiv.innerText = res.name;
+                    card.className = "info-card movie-cast-card"
+                    
+                    card.addEventListener("click", () => {
+                        window.location.href = `person.html?id=${res.id}`
+                    })
+                    
+                    document.getElementById("movie-credits").appendChild(card)
+                })
+                
+            }
+        })
+        
     })
     .catch(error => console.log(error));
 

@@ -140,6 +140,27 @@ async function movieCredits(movieId) {
     return await makeAPICall(urlExtension,"");
 }
 
+// Function for tv credits
+async function tvCredits(seriesId) {
+    const urlExtension = `tv/${seriesId}/credits`;
+
+    return await makeAPICall(urlExtension,"");
+}
+
+// Function for movie credits by person
+async function movieCreditsByPerson(personId) {
+    const urlExtension = `person/${personId}/movie_credits`;
+
+    return await makeAPICall(urlExtension,"");
+}
+
+// Function for tv credits by person
+async function tvCreditsByPerson(personId) {
+    const urlExtension = `person/${personId}/tv_credits`;
+
+    return await makeAPICall(urlExtension,"");
+}
+
 // Utility function to process a query string into a JSON object
 function queryStringToJson(queryString) {
     // Remove the leading '?'
