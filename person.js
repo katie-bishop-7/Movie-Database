@@ -2,10 +2,13 @@
 const queryObj = queryStringToJson(window.location.search);
 const personId = queryObj.id;
 
+const searchInput = document.getElementById("search-text");
 const idInput = document.getElementById("url-text");
-const findButton = document.getElementById("image-button");
+const findButton = document.getElementById("find-button")
 const navButton = document.getElementById("nav-button");
 const drawer = document.getElementById("drawer")
+const closeIcon = document.getElementById("close-icon")
+
 let drawerIsOpen = false;
 
 
@@ -15,10 +18,22 @@ navButton.addEventListener("click", e => {
     drawer.dataset.open = `${drawerIsOpen}`
 });
 
+// Remove search input on close icon click
+closeIcon.addEventListener("click", (e) => {
+    searchInput.value = ""
+})
+
+// Navigate with a query string
+function searchEventListeners(element) {
+    element.addEventListener("click", e => {
+        e.preventDefault();
+        window.location.href = `${element.href}?query=${searchInput.value}`;
+    })
+}
+searchEventListeners(findButton)
+
+
 // Make the call to get the info based on the id
-personDetails(personId)
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
 personDetails(personId)
     .then(results => {
         // Insert image
@@ -126,7 +141,21 @@ personDetails(personId)
     })
     .catch(error => console.log(error));
 
+const carousel = document.getElementById("carousel-slider")
+function makeImageCarousel(arrayOfPosters) {
+    for (let i = 0; i < 3; i++) {
+        for (posterObj of arrayOfPosters) {
+            let poster = document.createElement("img")
+            poster.src = `${imgUrl}w500${posterObj.file_path}`;
+            poster.className = "carousel-picture"
+            carousel.appendChild(poster)
+        }
+    }
+}
 // Make the call to get the info based on the id
 personImages(personId)
-    .then(result => console.log(result))
+    .then(result => {
+        console.log(result);
+        makeImageCarousel(result.profiles);
+    })
     .catch(error => console.log(error));

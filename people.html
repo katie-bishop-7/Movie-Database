@@ -14,7 +14,7 @@
         <span class="material-symbols-outlined" id="nav-button">
             menu
         </span>
-        <h1>Amazing Movie Database</h1>
+        <h1><a href="index.html">Amazing Movie Database</a></h1>
         <div id="film-stripe">
             <div class="parallelogram black"></div>
             <div class="parallelogram white"></div>
@@ -22,8 +22,6 @@
             <div class="parallelogram white"></div>
             <div class="parallelogram black"></div>
             <div class="parallelogram white"></div>
-            <!-- <div class="parallelogram black"></div>
-            <div class="parallelogram white"></div>
             <div class="parallelogram black"></div>
             <div class="parallelogram white"></div>
             <div class="parallelogram black"></div>
@@ -31,16 +29,23 @@
             <div class="parallelogram black"></div>
             <div class="parallelogram white"></div>
             <div class="parallelogram black"></div>
-            <div class="parallelogram white"></div> -->
-
-
+            <div class="parallelogram white"></div>
+            <div class="parallelogram black"></div>
+            <div class="parallelogram white"></div>
         </div>
     </div>
-    <div id="search-div">
-        <div>
-            Search Term: <input id="search-text" type="text" placeholder="Search for movie"/>
+    <div id="search-div" class="row container right">
+        <div id="search-input-div" class=" row container right">
+            <a class="find-button" id="find-button" href="people.html">
+                <span class="material-symbols-outlined clickable" id="search-icon">
+                    search
+                </span>
+            </a>
+            <input id="search-text" type="text" placeholder="Search for people" />
+            <span class="material-symbols-outlined clickable" id="close-icon">
+                close
+            </span>
         </div>
-
     </div>
     <div id="drawer" class="light-theme">
         <div id="button-div">
@@ -67,19 +72,12 @@
         </div>
     </div>
     <div id="page">
-        <h1>Trending People</h1>
+        <h1 id="page-description">Trending People</h1>
         <div id="person-card-container" class="card-container">
             
         </div>
-    </div>
-    <h1>People</h1>
-    <div id="find-div">
-        <div>
-            Find Person by ID: <input id="id-text" type="text" />
-        </div>
-        <div id="button-div">
-            <a class="find-button" id="find-button" href="person.html">Find</a>
-        </div>
+        <a id="prev-page-people" href="people.html" class="page-nav clickable"> </a>
+        <a id="next-page-people" href="people.html" class="page-nav clickable"> </a>
     </div>
 </body>
 

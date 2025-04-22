@@ -2,24 +2,36 @@
 const queryObj = queryStringToJson(window.location.search);
 const movieId = queryObj.id;
 
+const searchInput = document.getElementById("search-text");
 const idInput = document.getElementById("url-text");
-const findButton = document.getElementById("image-button");
+const findButton = document.getElementById("find-button")
 const slider = document.getElementById("carousel-slider");
 const navButton = document.getElementById("nav-button");
 const drawer = document.getElementById("drawer")
+const closeIcon = document.getElementById("close-icon")
+
 let drawerIsOpen = false;
 
+// Remove search input on close icon click
+closeIcon.addEventListener("click", (e) => {
+    searchInput.value = ""
+})
 
 // Nav drawer open and close
 navButton.addEventListener("click", e => {
     drawerIsOpen = !drawerIsOpen;
     drawer.dataset.open = `${drawerIsOpen}`
 });
-// // Show the images based on the id
-// findButton.addEventListener("click", e => {
-//     document.getElementById("image-div").innerHTML =
-//         `<img src=${imgUrl}w300/${idInput.value}></img>`
-// });
+
+// Navigate with a query string
+function searchEventListeners(element) {
+    element.addEventListener("click", e => {
+        e.preventDefault();
+        window.location.href = `${element.href}?query=${searchInput.value}`;
+    })
+}
+searchEventListeners(findButton)
+
 
 // Make the call to get the info based on the id
 movieDetails(movieId)
@@ -56,44 +68,56 @@ movieDetails(movieId)
         movieInfo.appendChild(overview)
 
         // get credits
-        
+
         movieCredits(movieId)
-        .then(result => {
-            for (castObj of result.cast) {
-                const card = document.createElement('div')
-                const img = document.createElement('img')
-                const nameDiv = document.createElement('div')
-                const characterDiv = document.createElement('div')
-                characterDiv.innerText = castObj.character
-                characterDiv.className = "character"
+            .then(result => {
+                for (castObj of result.cast) {
+                    const card = document.createElement('div')
+                    const img = document.createElement('img')
+                    const nameDiv = document.createElement('div')
+                    const characterDiv = document.createElement('div')
+                    characterDiv.innerText = castObj.character
+                    characterDiv.className = "character"
 
-                card.appendChild(img)
-                card.appendChild(nameDiv)
-                card.appendChild(characterDiv) 
+                    card.appendChild(img)
+                    card.appendChild(nameDiv)
+                    card.appendChild(characterDiv)
 
-                personDetails(castObj.id)
-                .then(res => {
-                    img.src = `${imgUrl}w500${res.profile_path}`;
-                    nameDiv.innerText = res.name;
-                    card.className = "info-card movie-cast-card clickable"
-                    
-                    card.addEventListener("click", () => {
-                        window.location.href = `person.html?id=${res.id}`
-                    })
-                    
-                    document.getElementById("movie-credits").appendChild(card)
-                })
-                
-            }
-        })
-        
+                    personDetails(castObj.id)
+                        .then(res => {
+                            img.src = `${imgUrl}w500${res.profile_path}`;
+                            nameDiv.innerText = res.name;
+                            card.className = "info-card movie-cast-card clickable"
+
+                            card.addEventListener("click", () => {
+                                window.location.href = `person.html?id=${res.id}`
+                            })
+
+                            document.getElementById("movie-credits").appendChild(card)
+                        })
+
+                }
+            })
+
     })
     .catch(error => console.log(error));
 
+
+const carousel = document.getElementById("carousel-slider")
+function makeImageCarousel(arrayOfPosters) {
+    for (let i = 0; i < 3; i++) {
+        for (posterObj of arrayOfPosters) {
+            let poster = document.createElement("img")
+            poster.src = `${imgUrl}w500${posterObj.file_path}`;
+            poster.className = "carousel-picture"
+            carousel.appendChild(poster)
+        }
+    }
+}
 // Make the call to get the info based on the id
 movieImages(movieId)
     .then(result => {
         console.log(result);
-        // makeImageCarousel(result.posters); // Leaving this here as a hint for making a scrolling gallery
+        makeImageCarousel(result.posters);
     })
     .catch(error => console.log(error));
